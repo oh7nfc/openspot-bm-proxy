@@ -1,0 +1,11 @@
+#!/bin/sh
+# Block direct pushes to master/main; use a branch + pull request instead.
+while read -r local_ref local_sha remote_ref remote_sha; do
+    case "$remote_ref" in
+        refs/heads/master|refs/heads/main)
+            echo "pre-push: direct push to ${remote_ref#refs/heads/} is blocked. Push a feature branch and open a pull request." >&2
+            exit 1
+            ;;
+    esac
+done
+exit 0

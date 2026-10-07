@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+if [ "$1" = configure ]; then
+    getent passwd openspotproxy >/dev/null || \
+        adduser --system --group --no-create-home --shell /usr/sbin/nologin openspotproxy
+    install -d -m 755 /etc/openspot-bm-proxy
+    install -d -m 700 -o openspotproxy -g openspotproxy /etc/openspot-bm-proxy/keys
+    if [ -d /run/systemd/system ]; then
+        systemctl daemon-reload
+        systemctl enable openspot-bm-proxy >/dev/null 2>&1 || true
+        if grep -Eq '^OPENSPOT_DEVICE=.+' /etc/default/openspot-bm-proxy; then
+            systemctl restart openspot-bm-proxy
+        else
+            echo "openspot-bm-proxy: set OPENSPOT_DEVICE in /etc/default/openspot-bm-proxy, then:"
+            echo "  sudo systemctl restart openspot-bm-proxy"
+        fi
+    fi
+fi

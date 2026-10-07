@@ -1,0 +1,19 @@
+# Edit --device (the openSPOT's address) and --port before installing.
+[Unit]
+Description=openSPOT BrandMeister API v2 web proxy
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=openspotproxy
+Group=openspotproxy
+ExecStart=/usr/bin/python3 /opt/openspot-bm-proxy/proxy.py --device OPENSPOT_IP --bind 0.0.0.0 --port 8081
+Restart=on-failure
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadOnlyPaths=/etc/openspot-bm-proxy
+
+[Install]
+WantedBy=multi-user.target

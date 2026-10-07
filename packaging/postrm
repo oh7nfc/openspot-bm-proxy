@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+[ -d /run/systemd/system ] && systemctl daemon-reload || true
+# The keys directory and the openspotproxy user are left in place on purpose.

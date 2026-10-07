@@ -1,0 +1,5 @@
+# Settings for the openspot-bm-proxy service. Set OPENSPOT_DEVICE, then:
+#   sudo systemctl restart openspot-bm-proxy
+OPENSPOT_DEVICE=
+BIND=0.0.0.0
+PORT=8081
