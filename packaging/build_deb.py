@@ -14,7 +14,7 @@ ROOT = os.path.dirname(HERE)
 CONTROL = """Package: openspot-bm-proxy
 Version: {version}
 Architecture: all
-Maintainer: Veijo Arponen <oh7nfc@gmail.com>
+Maintainer: Veijo Arponen <veijo@arponen.eu>
 Depends: python3
 Section: hamradio
 Priority: optional
