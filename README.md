@@ -22,6 +22,19 @@ Tested with an openSPOT v1.1, firmware 0142. Python 3, standard library only.
 | Change reflector | not available: API v2 has no such call, the page shows its own error |
 | Reflector row on the Status page | always shows "-" (v2 profile has no reflector field) |
 
+## WPSD-style BrandMeister manager
+
+`http://<proxy>:8081/bm` is a standalone manager page in the style of WPSD's BrandMeister Manager, with no
+openSPOT needed. Enter your hotspot's DMR ID and your key name (both are remembered in the browser; the
+token never is). It shows:
+
+- static talkgroups with their BrandMeister names, slot and a Remove button, plus an Add static TG form
+  (the name of the TG is looked up as you type)
+- dynamic talkgroups with their timeouts
+- Drop dynamic TGs and Drop current call buttons for each timeslot
+
+The page reloads the lists every 60 s. Writes need the key; viewing does not.
+
 ## How it works
 
 - Browse to `http://<proxy>:8081/` instead of the device. Everything is passed through to the openSPOT,
